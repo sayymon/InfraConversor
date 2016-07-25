@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/xsd/assembly-1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/xsd/assembly-1.1.0 http://maven.apache.org/xsd/assembly-1.1.0-SNAPSHOT.xs">
+	<!-- ===================================================== -->
+	<!-- formato padrão para aplicações standalone  -->
+	<!-- incialmente desenvolvidor pela Arquitetura            -->
+	<!--        Março 2009, Tedi Zanfolim                      -->
+	<!-- ===================================================== -->
+	<id>app</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<!--
+		mudado para não forçar a inclusão do site - isto atrapalha nos testes.
+	-->
+	<includeSiteDirectory>false</includeSiteDirectory>
+
+	<!-- colocar todas as libs das quais o projeto depende em lib -->
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/lib</outputDirectory>
+			<useProjectArtifact />
+		</dependencySet>
+	</dependencySets>
+	<!--
+		todo o conteúdo do diretório src/main/env-resources será copiado,
+		aberto, para o zip final. Aqui estarão as propriedades do ambiente
+		(properties/env.properties) e os scripts de incialização da aplicação
+		(bin/startup.sh)
+	-->
+	<fileSets>
+		<fileSet>
+			<directory>src/main/env-resources</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>*/**</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
